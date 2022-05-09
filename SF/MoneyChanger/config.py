@@ -198,7 +198,13 @@ currencies = {
         "NumCode": "392",
         "CharCode": "JPY",
         "Name": "Японских иен",
-    }}
+    },
+    "RUB": {
+        "ID": "",
+        "NumCode": "1",
+        "CharCode": "RU",
+        "Name": "Рубль",
+    }
+}
 
-# for currency in currencies:
-#     print(currencies[currency]['Name'])
+
