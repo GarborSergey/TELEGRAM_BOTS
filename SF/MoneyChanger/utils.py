@@ -23,30 +23,30 @@ class CurrenciesConvertor:
         try:
             if len(values) == 3:
                 quote, base, amount = values
-                quote_ticker = get_ticker(quote)
-                base_ticker = get_ticker(base)
+                quote_ticker = get_ticker(quote.title())
+                base_ticker = get_ticker(base.title())
                 amount = int(amount)
 
             elif len(values) == 5:
-                quote = values[0] + ' ' + values[1]
-                base = values[2] + ' ' + values[3]
+                quote = values[0].title() + ' ' + values[1]
+                base = values[2].title() + ' ' + values[3]
                 amount = int(values[-1])
                 quote_ticker = get_ticker(quote)
                 base_ticker = get_ticker(base)
 
             elif len(values) == 4:
                 amount = int(values[-1])
-                name = values[0] + ' ' + values[1]
+                name = values[0].title() + ' ' + values[1]
                 try:
                     quote_ticker = get_ticker(name)
                     quote = name
-                    base = values[2]
-                    base_ticker = get_ticker(values[2])
+                    base = values[2].title()
+                    base_ticker = get_ticker(base)
                 except ConvertionException:
-                    name = values[1] + ' ' + values[2]
+                    name = values[1].title() + ' ' + values[2]
                     base = name
-                    quote = values[0]
-                    quote_ticker = get_ticker(values[0])
+                    quote = values[0].title()
+                    quote_ticker = get_ticker(quote)
                     base_ticker = get_ticker(name)
 
             else:
@@ -88,8 +88,8 @@ class CurrenciesConvertor:
                  (central_bank['Valute'][d['base_ticker']]['Value'] * central_bank['Valute'][d['quote_ticker']]['Nominal']) * \
                  d['amount']
 
-        text = f"{d['amount']} {d['quote']} перевести в {d['base']}\n === {result} {d['base']}\n" \
-               f"По курсу ЦБ РФ на {refresh_date.strftime('%d %b %Y time:%H:%M')}"
+        text = f"{d['amount']} {d['quote']} перевести в {d['base']}\n = {result} {d['base']}\n" \
+               f"По курсу ЦБ РФ на {refresh_date.strftime('%d.%m.%Y')}"
 
         return text
 
